@@ -11,15 +11,11 @@ jobs:
         - name: run Cowsay
           run: cowsay -f elephant "Incoming elephant.. RWRRR" >> elephant.txt
 
-        - name: sleep
-          run: sleep 30
     test_job:
       needs: build_job
       runs-on: ubuntu-latest
       steps:
-        - name: sleep
-          run: sleep 10
-        
+       
         - name: test file exists
           run: grep -i elephant elephant.txt 
 
