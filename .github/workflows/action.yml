@@ -2,13 +2,33 @@ name: Github actions certified
 on: push
 
 jobs:
-    first_job:
+    build_job:
       runs-on: ubuntu-latest
       steps:
-        - name: Checkout code
-          uses: actions/checkout@v2
+        - name: Install Cowsay
+          run: sudo apt-get install cowsay -y
 
-        - name: Run a script
-          run: echo "Hello, world!"
-  
+        - name: run Cowsay
+          run: cowsay -f lion "Incoming lion.. RWRRR" >> lion.txt
+
+        - name: sleep
+          run: sleep 30
+    test_job:
+      runs-on: ubuntu-latest
+      steps:
+        - name: sleep
+          run: sleep 10
+        
+        - name: test file exists
+          run: grep -i lion lion.txt 
+
+    deploy_job:
+      runs-on: ubuntu-latest
+      steps:
+        - name: read file
+          run: cat lion.txt
+        
+        - name: deploy
+          run: echo "deploying.."
+    
   
