@@ -21,7 +21,11 @@ jobs:
       needs: build_job
       runs-on: ubuntu-latest
       steps:
-       
+        - name: Download a Build Artifact
+          uses: actions/download-artifact@v4.2.1
+          with:
+                name: elephant-txt-file
+            
         - name: test file exists
           run: grep -i elephant elephant.txt 
 
@@ -29,6 +33,11 @@ jobs:
       needs: [test_job]
       runs-on: ubuntu-latest
       steps:
+        - name: Download a Build Artifact
+          uses: actions/download-artifact@v4.2.1
+          with:
+                name: elephant-txt-file
+                
         - name: read file
           run: cat elephant.txt
         
